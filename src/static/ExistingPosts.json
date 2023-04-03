@@ -1,0 +1,29 @@
+{
+  "post": [
+    {
+      "idx": 1,
+      "title": "Red Hat System Administration I (RHEL 9)",
+      "content": "오픈소스, Linux배포판, Red Hat Enterprice Linux를 설명하고 정의합니다."
+    },
+    {
+      "idx": 2,
+      "title": "Red Hat Enterprise Linux Automation with Ansible (RHEL 8)",
+      "content": "Ansible 개념을 설명하고 Red Hat Ansible Engine을 설치합니다."
+    },
+    {
+      "idx": 3,
+      "title": "Red Hat OpenShift I: Containers & Kubernetes",
+      "content": "Red Hat OpenShift Container Platform를 통해 오케스트레이션되는 컨테이너에서 소프트웨어를 실행하는 방법을 설명합니다."
+    },
+    {
+      "idx": 4,
+      "title": "Red Hat OpenShift Development I: Introduction to Containers with Podman",
+      "content": "컨테이너로 애플리케이션 개발을 지원하는 방법을 설명합니다. 이전 강의인 Red Hat OpenShift I: Containers & Kubernetes를 먼저 수강하세요."
+    },
+    {
+      "idx": 5,
+      "title": "Red Hat OpenShift Development II: Containerizing Applications",
+      "content": "OpenShift 클러스터에 다양한 애플리케이션 패키징 방식을 사용하여 애플리케이션을 배포하고 해당 리소스를 관리합니다. 이전 강의인 Red Hat OpenShift Development I: Introduction to Containers with Podman를 먼저 수강하세요."
+    }
+  ]
+}
