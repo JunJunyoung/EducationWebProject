@@ -83,9 +83,9 @@ const WikiPage = () => {
   const a = content.substring(0, duplicateWordsIndex - 1);
   const b = content.substring(
     duplicateWordsIndex,
-    duplicateWordsIndex + length - 1,
+    duplicateWordsIndex + length,
   );
-  const c = content.substring(duplicateWordsIndex + length, content.length);
+  const c = content.substring(duplicateWordsIndex + length + 1, content.length);
 
   return (
     <WikiPageBlock>
