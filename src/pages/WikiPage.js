@@ -73,20 +73,15 @@ const WikiPage = () => {
   const newPosts = posts.filter((item) => item.idx !== idx);
   const allTitleArr = posts.map((item) => item.title);
   const duplicateWordsArr = allTitleArr?.filter((item) => content.match(item));
-  const duplicateWords = duplicateWordsArr?.toString();
-  const duplicateWordsDetails = posts.find(
-    (item) => item.title === duplicateWords,
-  );
-
-  const duplicateWordsIndex = content.indexOf(duplicateWords);
-  const length = duplicateWords.length;
-  const a = content.substring(0, duplicateWordsIndex - 1);
-  const b = content.substring(
-    duplicateWordsIndex,
-    duplicateWordsIndex + length,
-  );
-  const c = content.substring(duplicateWordsIndex + length + 1, content.length);
-
+  const duplicateWordsDetailArr = posts.filter((item) => {
+    const condition = duplicateWordsArr.filter((e) => e === item.title);
+    return condition.toString() === item.title;
+  });
+  let convertedContent = content;
+  const addTagDuplicateWords = duplicateWordsArr.forEach((item) => {
+    convertedContent = convertedContent.replace(item, `<tag>${item}<tag>`);
+  });
+  const splitTagDuplicateWordsArr = convertedContent.split(`<tag>`);
   return (
     <WikiPageBlock>
       <PostHead>
@@ -94,19 +89,25 @@ const WikiPage = () => {
       </PostHead>
       <PostActionButtons idx={idx} title={title} content={content} />
       <PostContent>
-        {a}{' '}
-        {
-          <PostTitleContent
-            to="/wiki"
-            state={{
-              ...duplicateWordsDetails,
-              posts,
-            }}
-          >
-            {b}
-          </PostTitleContent>
-        }{' '}
-        {c}
+        {splitTagDuplicateWordsArr.map((item, index) => {
+          const v = duplicateWordsDetailArr.filter((e) => e.title === item);
+          if (v.length > 0) {
+            return (
+              <PostTitleContent
+                key={index}
+                to="/wiki"
+                state={{
+                  ...v[0],
+                  posts,
+                }}
+              >
+                {item}
+              </PostTitleContent>
+            );
+          } else {
+            return item;
+          }
+        })}
       </PostContent>
       <AnotherPostBlock>
         <h2>페이지 내 다른 게시물 보기</h2>
