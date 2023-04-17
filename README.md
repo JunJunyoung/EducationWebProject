@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+## 서비스 개발 단계
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 기획
 
-## Available Scripts
+- 기술스택 react, redux toolkit, styled components, Quill 라이브러리를 더 능숙하게 익히하기 위해 기능을 구현
+- **메인 페이지** / **위키 페이지**
 
-In the project directory, you can run:
+**기술스택**
 
-### `npm start`
+- 프래임워크: react
+- 상태관리: redux toolkit
+- 코드 형상관리: git
+- 패키지: styled components, Quill
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 설계
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 데이터 설계
+    - 데이터: json 서버
+        - Redux toolkit 상태 관리 라이브러리를 통해 관리
+- 인터페이스 설계
+    - 메인페이지에서는 여러 개의 위키 페이지 제목 목록
+    - 위키페이지는 제목과 본문으로 구성
+    - 메인페이지에 목록으로 보여지는 제목의 갯수는 5개이며 5개가 넘어가면 페이지를 구분
+    - 위키페이지 제목 클릭시 제목과 본문
+    - 위키페이지 본문에 다른 위키페이지의 제목이 있으면 자동으로 링크가 걸리고, 클릭하면 해당 위키페이지로 이동 → 화면전환 react router
+    - 메인페이지에서 추가 버튼을 누르면 새로이 입력할 수 있는 창이 나오고, 제목과 내용을 입력할 수 있습니다. → redux array push
+    - 위키내용페이지에는 수정 버튼이 있고, 수정을 누르면 내용을 수정해서 저장 → 특정 index 접근
+    - 위키페이지 아래에는 위키페이지 제목을 포함하는 내용이 담긴 위키페이지의 제목을 나열
 
-### `npm test`
+- 인터렉션 설계 (로직 설계)
+    - 데이터 형식
+        
+        {
+         post: [
+           {
+           idx: 1,
+           title: "",
+           content: "",
+          },
+         …
+         ]
+        }
+        
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. 구현 및 개발
 
-### `npm run build`
+4. 테스트 (고객의 입장에서)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 진행 사항
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 메인페이지
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 글쓰기 기능
+- Post 제목 확인 가능
+    - 5개 씩 확인 가능
+        - 백앤드 서버에서 어떤 데이터가 올 지 모르기 때문에, 해당 페에지의 5개의 데이터만 불러올 수 있도록 구현
+            - currentPosts 알고리즘
+    - 최근 추가된 글 1페이지 상단에서 확인 가능
+- 페이지 확인 가능, 이동 가능
 
-### `npm run eject`
+### 위키페이지
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 제목 / 내용 확인 가능
+- 내용 내부에 다른 위키페이지 제목이 있을 경우, 링크 추가되고 페이지 이동 기능
+- 페이지 내 다른 게시물 보기 확인 가능
+- 게시물 수정 가능
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 글쓰기
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 제목, 내용 입력 가능
+- 포스트 등록, 취소 기능
